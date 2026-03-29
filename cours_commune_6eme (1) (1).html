@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Commune, le Conseil Municipal et le Maire – EMC 6ème</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Crimson+Pro:wght@400;600&display=swap');
+
+  :root {
+    --bleu: #1A56A0;
+    --bleu-clair: #EBF3FF;
+    --bleu-moyen: #4A8FD4;
+    --rouge: #C0392B;
+    --rouge-clair: #FDECEA;
+    --vert: #1A7A4A;
+    --vert-clair: #E8F8EF;
+    --or: #B8860B;
+    --or-clair: #FEF9E7;
+    --gris: #F5F4F0;
+    --gris-fonce: #555;
+    --texte: #1a1a1a;
+    --bord: #D0CECE;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #F0EDE6;
+    color: var(--texte);
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--bleu);
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 160px; height: 160px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+  header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.4rem;
+  }
+  header p {
+    font-size: 1rem;
+    opacity: 0.85;
+  }
+
+  /* NAVIGATION */
+  .nav-tabs {
+    background: white;
+    border-bottom: 2px solid var(--bord);
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    sticky: top;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .nav-tab {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.85rem 0.5rem;
+    border: none;
+    background: white;
+    color: var(--gris-fonce);
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  .nav-tab:hover { color: var(--bleu); background: var(--bleu-clair); }
+  .nav-tab.active {
+    color: var(--bleu);
+    border-bottom-color: var(--bleu);
+    background: var(--bleu-clair);
+  }
+  .nav-num {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+
+  /* CONTENT */
+  .content { display: none; max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .content.active { display: block; }
+
+  /* SECTION TITLE */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 1.5rem;
+  }
+  .section-icon {
+    width: 54px; height: 54px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+  .section-title h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--bleu);
+  }
+  .section-title p {
+    font-size: 0.9rem;
+    color: var(--gris-fonce);
+    margin-top: 2px;
+  }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--bord);
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+    color: var(--bleu);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card p, .card li {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #333;
+  }
+  .card ul { padding-left: 1.3rem; }
+  .card li { margin-bottom: 0.3rem; }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    border-radius: 14px;
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 1.2rem;
+    border-left: 4px solid;
+  }
+  .highlight-bleu { background: var(--bleu-clair); border-color: var(--bleu); }
+  .highlight-vert { background: var(--vert-clair); border-color: var(--vert); }
+  .highlight-rouge { background: var(--rouge-clair); border-color: var(--rouge); }
+  .highlight-or { background: var(--or-clair); border-color: var(--or); }
+  .highlight strong { display: block; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem; }
+  .highlight-bleu strong { color: var(--bleu); }
+  .highlight-vert strong { color: var(--vert); }
+  .highlight-rouge strong { color: var(--rouge); }
+  .highlight-or strong { color: var(--or); }
+
+  /* STATS GRID */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 1.4rem;
+  }
+  .stat-card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--bord);
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--bleu);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--gris-fonce);
+    font-weight: 600;
+  }
+
+  /* TIMELINE / STEPS */
+  .steps { list-style: none; }
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 1.1rem;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--bleu);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--bord);
+    padding: 0.9rem 1.1rem;
+  }
+  .step-content strong { color: var(--bleu); font-size: 0.95rem; }
+  .step-content p { font-size: 0.9rem; color: #444; margin-top: 3px; }
+
+  /* COMPETENCES GRID */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 1.2rem;
+  }
+  .comp-card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--bord);
+    padding: 1rem 1.1rem;
+    border-top: 4px solid;
+  }
+  .comp-card.bleu { border-top-color: var(--bleu); }
+  .comp-card.vert { border-top-color: var(--vert); }
+  .comp-card.rouge { border-top-color: var(--rouge); }
+  .comp-card.or { border-top-color: var(--or); }
+  .comp-card .icon { font-size: 24px; margin-bottom: 6px; }
+  .comp-card h4 { font-size: 0.9rem; font-weight: 700; color: #222; margin-bottom: 6px; }
+  .comp-card p { font-size: 0.82rem; color: #555; line-height: 1.5; }
+
+  /* PLM CITIES */
+  .cities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin-bottom: 1.2rem;
+  }
+  .city-card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--bord);
+    padding: 1.2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .city-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+  }
+  .city-paris::before { background: linear-gradient(90deg, #002395, #FFFFFF, #ED2939); }
+  .city-lyon::before { background: #C1002B; }
+  .city-marseille::before { background: #009FDF; }
+  .city-card h4 { font-size: 1rem; font-weight: 800; margin-bottom: 4px; color: #111; }
+  .city-card .pop { font-size: 0.8rem; color: var(--gris-fonce); margin-bottom: 8px; }
+  .city-card p { font-size: 0.85rem; color: #444; line-height: 1.55; }
+  .city-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--bleu-clair);
+    color: var(--bleu);
+    border-radius: 6px;
+    padding: 2px 8px;
+    margin-bottom: 8px;
+  }
+
+  /* QUIZ */
+  .quiz-container { }
+  .quiz-question {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--bord);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .quiz-q-num {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--bleu);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+  .quiz-q-text {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 1rem;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-opt {
+    background: var(--gris);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.15s;
+    text-align: left;
+    font-family: 'Nunito', sans-serif;
+  }
+  .quiz-opt:hover { background: var(--bleu-clair); border-color: var(--bleu-moyen); }
+  .quiz-opt.correct { background: var(--vert-clair); border-color: var(--vert); color: var(--vert); }
+  .quiz-opt.wrong { background: var(--rouge-clair); border-color: var(--rouge); color: var(--rouge); }
+  .quiz-opt.disabled { cursor: default; }
+  .quiz-explication {
+    margin-top: 0.8rem;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    display: none;
+    line-height: 1.6;
+  }
+  .quiz-explication.show { display: block; }
+  .quiz-explication.correct { background: var(--vert-clair); color: #1A5C35; }
+  .quiz-explication.wrong { background: var(--rouge-clair); color: #8B1A14; }
+
+  .quiz-score {
+    background: var(--bleu);
+    color: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    display: none;
+  }
+  .quiz-score.show { display: block; }
+  .quiz-score .score-num { font-size: 2.5rem; font-weight: 800; }
+  .quiz-score p { font-size: 1rem; opacity: 0.9; margin-top: 0.3rem; }
+  .btn-restart {
+    margin-top: 1rem;
+    background: white;
+    color: var(--bleu);
+    border: none;
+    border-radius: 10px;
+    padding: 0.6rem 1.4rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  /* TIMELINE SEANCE */
+  .timeline-seance {
+    position: relative;
+    padding-left: 20px;
+  }
+  .timeline-seance::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--bord);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 16px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--bleu);
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--bleu);
+  }
+  .tl-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--bord);
+    padding: 1rem 1.2rem;
+  }
+  .tl-card .tl-time {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--bleu);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tl-card h4 { font-size: 0.95rem; font-weight: 700; margin: 3px 0; }
+  .tl-card p { font-size: 0.85rem; color: #555; }
+
+  /* TOGGLE */
+  .toggle-section { margin-bottom: 0.8rem; }
+  .toggle-btn {
+    width: 100%;
+    background: white;
+    border: 1px solid var(--bord);
+    border-radius: 12px;
+    padding: 0.9rem 1.1rem;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--bleu);
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.15s;
+  }
+  .toggle-btn:hover { background: var(--bleu-clair); }
+  .toggle-body {
+    display: none;
+    background: white;
+    border: 1px solid var(--bord);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    padding: 1rem 1.2rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #333;
+  }
+  .toggle-body.open { display: block; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.4rem; }
+    .nav-tab { font-size: 11px; min-width: 90px; }
+    .nav-num { font-size: 15px; }
+  }
+
+  .bandeau-tricolore {
+    height: 5px;
+    background: linear-gradient(90deg, #002395 33.33%, white 33.33%, white 66.66%, #ED2939 66.66%);
+    width: 100%;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 2px 8px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+  .tag-bleu { background: var(--bleu-clair); color: var(--bleu); }
+  .tag-vert { background: var(--vert-clair); color: var(--vert); }
+  .tag-rouge { background: var(--rouge-clair); color: var(--rouge); }
+
+  .deux-roles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 500px) {
+    .deux-roles { grid-template-columns: 1fr; }
+  }
+  .role-card {
+    border-radius: 14px;
+    padding: 1.1rem;
+    border: 1px solid var(--bord);
+  }
+  .role-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 6px; }
+  .role-card p { font-size: 0.84rem; color: #444; line-height: 1.55; }
+</style>
+</head>
+<body>
+
+<div class="bandeau-tricolore"></div>
+<header>
+  <div class="header-badge">EMC — Éducation Morale et Civique — Classe de 6ème</div>
+  <h1>🏛️ La Commune, le Conseil Municipal et le Maire</h1>
+  <p>Comprendre comment fonctionne la démocratie locale en France</p>
+</header>
+
+<div class="nav-tabs">
+  <button class="nav-tab active" onclick="showTab('tab-commune')">
+    <span class="nav-num">🏘️</span>La commune
+  </button>
+  <button class="nav-tab" onclick="showTab('tab-conseil')">
+    <span class="nav-num">🗳️</span>Le conseil municipal
+  </button>
+  <button class="nav-tab" onclick="showTab('tab-election')">
+    <span class="nav-num">📊</span>Les élections
+  </button>
+  <button class="nav-tab" onclick="showTab('tab-maire')">
+    <span class="nav-num">👤</span>Le maire
+  </button>
+  <button class="nav-tab" onclick="showTab('tab-quiz')">
+    <span class="nav-num">🎯</span>Quiz
+  </button>
+  <button class="nav-tab" onclick="showTab('tab-seance')">
+    <span class="nav-num">⏱️</span>Plan de séance
+  </button>
+</div>
+
+<!-- ===================== TAB 1 : COMMUNE ===================== -->
+<div id="tab-commune" class="content active">
+  <div class="section-title">
+    <div class="section-icon" style="background:#EBF3FF;">🏘️</div>
+    <div>
+      <h2>Qu'est-ce qu'une commune ?</h2>
+      <p>La plus petite division administrative de France</p>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-number">34 935</span>
+      <span class="stat-label">communes en France</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">12</span>
+      <span class="stat-label">min. d'habitants (Rochefourchat)</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">2,1 M</span>
+      <span class="stat-label">hab. à Paris (la plus grande)</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">6 ans</span>
+      <span class="stat-label">durée du mandat municipal</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📖 Définition</h3>
+    <p>Une <strong>commune</strong> est le territoire d'un village ou d'une ville, avec ses habitants qui partagent des intérêts communs. C'est la plus petite <strong>collectivité territoriale</strong> de France. Chaque commune possède une mairie, qui est le siège de son administration.</p>
+  </div>
+
+  <div class="highlight highlight-bleu">
+    <strong>🤔 Qu'est-ce qu'une collectivité territoriale ?</strong>
+    C'est une portion du territoire français qui dispose de sa propre administration, d'élus locaux et d'un budget pour gérer les affaires des habitants. La commune est la collectivité territoriale la plus proche des citoyens.
+  </div>
+
+  <div class="card">
+    <h3>🔧 Ce que fait la commune pour toi</h3>
+    <ul>
+      <li><strong>L'école :</strong> elle construit les écoles primaires, paye les agents (ATSEM, gardiens, cantiniers), achète le mobilier et les fournitures</li>
+      <li><strong>La voirie :</strong> elle entretient les rues, les trottoirs, l'éclairage public et les parkings</li>
+      <li><strong>Les espaces verts :</strong> parcs, jardins publics, squares</li>
+      <li><strong>L'état civil :</strong> naissance, mariage, décès — tous enregistrés à la mairie</li>
+      <li><strong>Les équipements culturels et sportifs :</strong> médiathèques, piscines, gymnases, stades</li>
+      <li><strong>La sécurité :</strong> la police municipale veille à l'ordre dans la commune</li>
+      <li><strong>L'urbanisme :</strong> qui a le droit de construire quoi et où</li>
+    </ul>
+  </div>
+
+  <div class="highlight highlight-vert">
+    <strong>💡 Pour mémoriser</strong>
+    La commune s'occupe de ta vie de tous les jours : l'école que tu fréquentes, les rues que tu traverses, le parc où tu joues, la piscine municipale… tout cela dépend de ta commune !
+  </div>
+
+  <div class="card">
+    <h3>🗺️ Comment est organisée la France ?</h3>
+    <p>La France est organisée en plusieurs niveaux :</p>
+    <ul style="margin-top: 0.5rem;">
+      <li><strong>La commune</strong> (le village ou la ville) — gérée par le conseil municipal et le maire</li>
+      <li><strong>Le département</strong> — géré par le conseil départemental</li>
+      <li><strong>La région</strong> — gérée par le conseil régional</li>
+      <li><strong>L'État</strong> — gouverné par le Parlement et le gouvernement</li>
+    </ul>
+    <p style="margin-top: 0.7rem; color: #666; font-size: 0.85rem;">La commune est le niveau le plus proche des habitants. C'est là que la démocratie locale s'exerce au quotidien.</p>
+  </div>
+</div>
+
+<!-- ===================== TAB 2 : CONSEIL ===================== -->
+<div id="tab-conseil" class="content">
+  <div class="section-title">
+    <div class="section-icon" style="background:#E8F8EF;">🗳️</div>
+    <div>
+      <h2>Le conseil municipal</h2>
+      <p>L'organe de décision de la commune</p>
+    </div>
+  </div>
+
+  <div class="highlight highlight-bleu">
+    <strong>📌 Définition</strong>
+    Le conseil municipal est l'assemblée élue qui prend les décisions pour la commune. Il est composé de <strong>conseillers municipaux</strong> élus par les habitants. C'est l'organe délibérant : il vote les lois locales (appelées <em>délibérations</em>) et le budget de la commune.
+  </div>
+
+  <div class="card">
+    <h3>👥 Combien de conseillers municipaux ?</h3>
+    <p>Le nombre de conseillers dépend de la taille de la commune :</p>
+    <div class="stats-grid" style="margin-top: 0.8rem;">
+      <div class="stat-card">
+        <span class="stat-number" style="font-size:1.3rem;">9</span>
+        <span class="stat-label">moins de 100 habitants</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" style="font-size:1.3rem;">15</span>
+        <span class="stat-label">100 à 499 habitants</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" style="font-size:1.3rem;">29</span>
+        <span class="stat-label">5 000 à 9 999 hab.</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" style="font-size:1.3rem;">69</span>
+        <span class="stat-label">plus de 300 000 hab.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🏛️ Les principales compétences du conseil municipal</h3>
+    <div class="comp-grid">
+      <div class="comp-card bleu">
+        <div class="icon">💰</div>
+        <h4>Budget et finances</h4>
+        <p>Vote le budget annuel de la commune. Décide des impôts locaux et des dépenses.</p>
+      </div>
+      <div class="comp-card vert">
+        <div class="icon">🏗️</div>
+        <h4>Urbanisme et travaux</h4>
+        <p>Décide des constructions, rénovations, plans d'aménagement du territoire.</p>
+      </div>
+      <div class="comp-card rouge">
+        <div class="icon">🎓</div>
+        <h4>Enseignement</h4>
+        <p>Gère les écoles primaires : bâtiments, cantine, équipements, personnel non-enseignant.</p>
+      </div>
+      <div class="comp-card or">
+        <div class="icon">🌿</div>
+        <h4>Vie locale</h4>
+        <p>Gère les parcs, la voirie, les équipements sportifs et culturels, les transports locaux.</p>
+      </div>
+      <div class="comp-card bleu">
+        <div class="icon">🤝</div>
+        <h4>Action sociale</h4>
+        <p>Aide aux personnes âgées, aux familles, centres de loisirs, crèches municipales.</p>
+      </div>
+      <div class="comp-card vert">
+        <div class="icon">🔒</div>
+        <h4>Sécurité et ordre</h4>
+        <p>Organise la police municipale et veille à la sécurité des habitants.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📋 Comment fonctionne le conseil municipal ?</h3>
+    <ul>
+      <li>Le conseil se réunit au moins <strong>une fois par trimestre</strong></li>
+      <li>Les séances sont publiques : les habitants peuvent assister aux réunions</li>
+      <li>Les décisions s'appellent des <strong>délibérations</strong> et sont votées à la majorité</li>
+      <li>Le conseil peut créer des <strong>commissions</strong> spécialisées (voirie, culture, urbanisme…)</li>
+      <li>Il peut déléguer certains pouvoirs au maire, qui lui rend compte</li>
+    </ul>
+  </div>
+
+  <div class="highlight highlight-or">
+    <strong>🏫 Le lien avec ton école</strong>
+    Si ta cantine a de nouvelles tables, si ta cour d'école a été rénovée, si un nouveau gymnase a ouvert — c'est le conseil municipal qui a voté ces dépenses dans le budget de la commune !
+  </div>
+</div>
+
+<!-- ===================== TAB 3 : ELECTIONS ===================== -->
+<div id="tab-election" class="content">
+  <div class="section-title">
+    <div class="section-icon" style="background:#FDECEA;">📊</div>
+    <div>
+      <h2>Comment sont élus les conseillers ?</h2>
+      <p>Les élections municipales en France</p>
+    </div>
+  </div>
+
+  <div class="highlight highlight-bleu">
+    <strong>📅 Quand ont lieu les élections ?</strong>
+    Les élections municipales ont lieu tous les <strong>6 ans</strong>. Les dernières élections ont eu lieu en <strong>mars 2026</strong> (les 15 et 22 mars). Les prochaines auront lieu en 2032.
+  </div>
+
+  <div class="card">
+    <h3>🗳️ Qui peut voter ?</h3>
+    <p>Pour voter aux élections municipales, il faut :</p>
+    <ul style="margin-top: 0.5rem;">
+      <li>Avoir <strong>18 ans ou plus</strong></li>
+      <li>Être inscrit sur les <strong>listes électorales</strong> de la commune</li>
+      <li>Être <strong>citoyen français</strong> (ou citoyen européen résidant en France)</li>
+    </ul>
+    <div class="highlight highlight-rouge" style="margin-top: 1rem;">
+      <strong>⚠️ Remarque</strong>
+      En France, le vote est un droit mais aussi un devoir civique. Se désintéresser des élections, c'est laisser les autres décider à sa place !
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🏙️ Le mode de scrutin selon la taille des communes</h3>
+
+    <div class="toggle-section">
+      <button class="toggle-btn" onclick="toggleSection('scrutin-moins')">
+        Communes de moins de 1 000 habitants <span>▼</span>
+      </button>
+      <div id="scrutin-moins" class="toggle-body open">
+        Scrutin <strong>majoritaire plurinominal à deux tours</strong>. Les électeurs votent pour des candidats individuels. Depuis la loi de 2025, les candidates et candidats doivent se présenter sur des <strong>listes paritaires</strong> (alternance femmes/hommes).
+      </div>
+    </div>
+
+    <div class="toggle-section">
+      <button class="toggle-btn" onclick="toggleSection('scrutin-plus')">
+        Communes de 1 000 habitants et plus <span>▼</span>
+      </button>
+      <div id="scrutin-plus" class="toggle-body">
+        Scrutin <strong>proportionnel de liste à deux tours</strong>. Les partis présentent des listes complètes de candidats. La liste arrivée en tête remporte une <strong>"prime majoritaire"</strong> de 50% des sièges, garantissant une majorité stable. Les autres sièges sont partagés entre toutes les listes ayant obtenu au moins 5% des voix.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⭐ Le cas particulier : Paris, Lyon, Marseille</h3>
+    <p style="margin-bottom: 0.8rem;">Ces trois grandes villes ont des règles spéciales depuis la <strong>loi PLM</strong> (Paris-Lyon-Marseille). Une nouvelle loi du <strong>11 août 2025</strong> a réformé ce système pour les élections de mars 2026.</p>
+
+    <div class="cities-grid">
+      <div class="city-card city-paris">
+        <span class="city-badge">🗼 Paris — 2,1 M hab.</span>
+        <h4>Conseil de Paris</h4>
+        <p>Divisée en <strong>17 secteurs</strong> (arrondissements ou regroupements). Depuis 2026 : deux votes distincts — un pour le <strong>conseil municipal</strong> de Paris, un pour le conseil d'arrondissement. Prime majoritaire réduite à <strong>25%</strong>.</p>
+      </div>
+      <div class="city-card city-lyon">
+        <span class="city-badge">🦁 Lyon — 530 000 hab.</span>
+        <h4>Triple scrutin</h4>
+        <p>Les Lyonnais votent pour <strong>trois</strong> assemblées en même temps : le conseil municipal de Lyon, le conseil d'arrondissement, et le <strong>conseil métropolitain</strong> de la Métropole de Lyon (collectivité à part entière).</p>
+      </div>
+      <div class="city-card city-marseille">
+        <span class="city-badge">⚓ Marseille — 870 000 hab.</span>
+        <h4>8 secteurs</h4>
+        <p>Divisée en <strong>8 secteurs</strong> (chaque secteur = 2 arrondissements). Deux votes : un pour le <strong>conseil municipal</strong>, un pour le conseil de secteur. Prime majoritaire à 25% pour le conseil municipal.</p>
+      </div>
+    </div>
+
+    <div class="highlight highlight-or">
+      <strong>🔑 La nouveauté 2026</strong>
+      Avant 2026, les habitants de Paris, Lyon et Marseille ne votaient que pour leurs conseillers d'arrondissement, qui élisaient ensuite entre eux les conseillers municipaux. Depuis 2026, ils élisent <strong>directement</strong> les conseillers municipaux, comme dans le reste de la France.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📍 Et après l'élection ? Comment est élu le maire ?</h3>
+    <ol class="steps" style="margin-top: 0.5rem;">
+      <li class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Le tour de scrutin (15 mars 2026)</strong>
+          <p>Les habitants votent pour élire les conseillers municipaux.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Premier conseil municipal</strong>
+          <p>Dans les jours qui suivent l'élection (entre le vendredi et le dimanche suivants), le nouveau conseil se réunit pour la première fois.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Élection du maire par les conseillers</strong>
+          <p>Les conseillers municipaux élisent le maire parmi eux, au scrutin secret. Si aucun n'obtient la majorité absolue aux deux premiers tours, le candidat ayant le plus de voix au 3e tour est élu.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Élection des adjoints</strong>
+          <p>Le maire propose des adjoints (1 à 30% des conseillers). Ils l'aident dans ses missions et peuvent le remplacer.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<!-- ===================== TAB 4 : MAIRE ===================== -->
+<div id="tab-maire" class="content">
+  <div class="section-title">
+    <div class="section-icon" style="background:#FEF9E7;">👤</div>
+    <div>
+      <h2>Le maire</h2>
+      <p>Chef de l'exécutif municipal</p>
+    </div>
+  </div>
+
+  <div class="highlight highlight-bleu">
+    <strong>🎽 L'écharpe tricolore</strong>
+    Le maire porte une écharpe aux couleurs de la France (bleu, blanc, rouge) lors des cérémonies officielles. Elle symbolise sa double fonction : représentant de la commune ET représentant de l'État.
+  </div>
+
+  <div class="card">
+    <h3>⚖️ Les deux casquettes du maire</h3>
+    <div class="deux-roles">
+      <div class="role-card" style="background: var(--bleu-clair); border-color: var(--bleu);">
+        <h4 style="color: var(--bleu);">🏛️ Représentant de la commune</h4>
+        <p>Il exécute les décisions du conseil municipal, gère les services publics locaux, prépare et exécute le budget, représente la commune en justice et passe les contrats au nom de la commune.</p>
+      </div>
+      <div class="role-card" style="background: var(--rouge-clair); border-color: var(--rouge);">
+        <h4 style="color: var(--rouge);">🇫🇷 Agent de l'État</h4>
+        <p>Sous l'autorité du préfet, il publie les lois et règlements, organise les élections dans les bureaux de vote, tient les registres d'état civil (naissances, mariages, décès) et assure l'ordre public.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔑 Les responsabilités du maire</h3>
+    <div class="comp-grid">
+      <div class="comp-card bleu">
+        <div class="icon">🚔</div>
+        <h4>Police municipale</h4>
+        <p>Il dispose d'un pouvoir de police pour assurer le bon ordre, la sécurité et la salubrité publique dans la commune.</p>
+      </div>
+      <div class="comp-card vert">
+        <div class="icon">📜</div>
+        <h4>État civil</h4>
+        <p>Il signe les actes de naissance, de mariage et de décès. Il célèbre les mariages civils.</p>
+      </div>
+      <div class="comp-card rouge">
+        <div class="icon">🗳️</div>
+        <h4>Organisation des élections</h4>
+        <p>Il organise les bureaux de vote pour toutes les élections (présidentielles, législatives, municipales…).</p>
+      </div>
+      <div class="comp-card or">
+        <div class="icon">📋</div>
+        <h4>Direction des services</h4>
+        <p>Il est le chef des agents municipaux (fonctionnaires territoriaux) qui travaillent à la mairie.</p>
+      </div>
+      <div class="comp-card bleu">
+        <div class="icon">🤝</div>
+        <h4>Représentation</h4>
+        <p>Il représente la commune dans tous les actes juridiques : contrats, marchés publics, litiges…</p>
+      </div>
+      <div class="comp-card vert">
+        <div class="icon">🏗️</div>
+        <h4>Permis de construire</h4>
+        <p>Il délivre (ou refuse) les permis de construire au nom de la commune.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📋 Quelques règles à connaître</h3>
+    <ul>
+      <li>Le maire est élu pour <strong>6 ans</strong> par les conseillers municipaux</li>
+      <li>Il peut être révoqué par le conseil municipal s'il perd la confiance de la majorité</li>
+      <li>Il est assisté de <strong>adjoints au maire</strong> qui ont chacun des délégations (adjoint à la culture, adjoint aux sports…)</li>
+      <li>Il est responsable devant le conseil municipal et lui rend compte de ses décisions</li>
+      <li>Sa fonction est <strong>bénévole dans les petites communes</strong>, avec des indemnités dans les grandes villes</li>
+      <li>Depuis 2025, il doit déclarer les dons et avantages reçus (valeur supérieure à 150€)</li>
+    </ul>
+  </div>
+
+  <div class="highlight highlight-vert">
+    <strong>🔎 Exemple concret</strong>
+    Imagine qu'un arbre tombe sur la route principale de ta commune un soir de tempête. C'est le maire qui, dans son pouvoir de police, donne l'ordre de sécuriser la zone. C'est aussi lui qui, en tant que représentant de la commune, passe le contrat avec l'entreprise qui enlèvera l'arbre. Et c'est le conseil municipal qui aura voté le budget pour payer ces travaux !
+  </div>
+</div>
+
+<!-- ===================== TAB 5 : QUIZ ===================== -->
+<div id="tab-quiz" class="content">
+  <div class="section-title">
+    <div class="section-icon" style="background:#EBF3FF;">🎯</div>
+    <div>
+      <h2>Quiz — Teste tes connaissances</h2>
+      <p>10 questions sur la commune, le conseil municipal et le maire</p>
+    </div>
+  </div>
+
+  <div class="quiz-container" id="quiz">
+    <!-- Questions injectées par JS -->
+  </div>
+
+  <div class="quiz-score" id="quiz-score">
+    <div class="score-num" id="score-num"></div>
+    <p id="score-msg"></p>
+    <button class="btn-restart" onclick="restartQuiz()">🔄 Recommencer le quiz</button>
+  </div>
+</div>
+
+<!-- ===================== TAB 6 : PLAN DE SÉANCE ===================== -->
+<div id="tab-seance" class="content">
+  <div class="section-title">
+    <div class="section-icon" style="background:#E8F8EF;">⏱️</div>
+    <div>
+      <h2>Plan de séance — 1 heure</h2>
+      <p>Organisation suggérée du cours</p>
+    </div>
+  </div>
+
+  <div class="highlight highlight-bleu">
+    <strong>🎯 Objectifs de la séance</strong>
+    À la fin du cours, les élèves doivent être capables de : définir commune et collectivité territoriale · expliquer le rôle du conseil municipal et comment il est élu · décrire les pouvoirs et responsabilités du maire · comprendre les particularités de Paris, Lyon et Marseille.
+  </div>
+
+  <div class="timeline-seance">
+    <div class="tl-item">
+      <div class="tl-card">
+        <div class="tl-time">⏱️ 0 – 5 min</div>
+        <h4>Accroche</h4>
+        <p>Question amorce : « Qui s'occupe de ton école, de ta cantine, des parcs de ta ville ? » — Réponses des élèves. Lancement vers la notion de commune.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-card">
+        <div class="tl-time">⏱️ 5 – 20 min</div>
+        <h4>La commune et les collectivités territoriales</h4>
+        <p>Définition de commune et collectivité territoriale. Chiffres clés (35 000 communes). Les compétences de la commune (école, voirie, état civil…). Utilisation de l'onglet <em>"La commune"</em> du cours interactif.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-card">
+        <div class="tl-time">⏱️ 20 – 35 min</div>
+        <h4>Le conseil municipal : composition, élection, compétences</h4>
+        <p>Mode de scrutin, nombre de conseillers selon la taille de la commune. Compétences : budget, urbanisme, écoles… Cas particulier de Paris, Lyon, Marseille (loi PLM, réforme 2025). Onglets <em>"Le conseil municipal"</em> et <em>"Les élections"</em>.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-card">
+        <div class="tl-time">⏱️ 35 – 48 min</div>
+        <h4>Le maire : élection et responsabilités</h4>
+        <p>Élection par les conseillers. Double rôle (représentant de la commune + agent de l'État). Ses pouvoirs : état civil, police municipale, direction des services… L'écharpe tricolore. Onglet <em>"Le maire"</em>.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-card">
+        <div class="tl-time">⏱️ 48 – 60 min</div>
+        <h4>Quiz et synthèse</h4>
+        <p>Quiz interactif (onglet <em>"Quiz"</em>) — 10 questions. Correction collective. Trace écrite au tableau ou dans le cahier. Lien avec la notion de démocratie locale.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 1.5rem;">
+    <h3>📝 Trace écrite suggérée</h3>
+    <div class="highlight highlight-bleu" style="margin-top: 0;">
+      <strong>La commune et ses représentants</strong>
+      <p style="font-size:0.9rem; line-height: 1.7; margin-top: 0.4rem;">
+        <strong>1. La commune</strong> est la plus petite collectivité territoriale française. Elle gère les affaires locales : écoles primaires, voirie, état civil, espaces verts et équipements sportifs et culturels.<br><br>
+        <strong>2. Le conseil municipal</strong> est élu tous les 6 ans au suffrage universel direct. Il vote le budget, les travaux, et les règles locales de la commune. Son nombre de membres dépend de la population.<br><br>
+        <strong>3. Le maire</strong> est élu par les conseillers municipaux. Il a deux rôles : représentant de la commune (il exécute les décisions du conseil) et agent de l'État (il organise les élections, tient l'état civil, assure l'ordre public).<br><br>
+        <strong>🔑 Paris, Lyon et Marseille</strong> ont un statut particulier : elles sont divisées en arrondissements/secteurs. Depuis 2026, leurs habitants élisent directement les conseillers municipaux.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔗 Ressources complémentaires</h3>
+    <ul>
+      <li><strong>Lumni :</strong> Quiz interactif sur le maire et le conseil municipal (lumni.fr)</li>
+      <li><strong>Vie-publique.fr :</strong> Fiches sur les communes et les élections municipales</li>
+      <li><strong>Elections.interieur.gouv.fr :</strong> Informations officielles sur les élections</li>
+      <li><strong>Activité possible :</strong> Visite de la mairie de la commune ou invitation du maire en classe</li>
+      <li><strong>Activité possible :</strong> Simulation d'un conseil municipal des jeunes (CMJ)</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const idx = ['tab-commune','tab-conseil','tab-election','tab-maire','tab-quiz','tab-seance'].indexOf(id);
+  document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleSection(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// QUIZ DATA
+const questions = [
+  {
+    q: "Qu'est-ce qu'une commune ?",
+    opts: [
+      "Un pays étranger", 
+      "La plus petite collectivité territoriale française", 
+      "Un département", 
+      "Une région"
+    ],
+    correct: 1,
+    explication: "✅ Exactement ! La commune est la plus petite division administrative et la plus petite collectivité territoriale de France. Il en existe environ 35 000."
+  },
+  {
+    q: "Combien de temps dure le mandat des conseillers municipaux ?",
+    opts: ["3 ans", "4 ans", "5 ans", "6 ans"],
+    correct: 3,
+    explication: "✅ Le mandat municipal dure 6 ans. Les dernières élections ont eu lieu en mars 2026, les prochaines en 2032."
+  },
+  {
+    q: "Qui élit le maire ?",
+    opts: [
+      "Les habitants de la commune directement", 
+      "Le préfet", 
+      "Les conseillers municipaux", 
+      "Le président de la République"
+    ],
+    correct: 2,
+    explication: "✅ Correct ! Le maire est élu par les conseillers municipaux lors de la première séance du conseil, après les élections municipales."
+  },
+  {
+    q: "Lequel de ces domaines n'est PAS une compétence de la commune ?",
+    opts: [
+      "Les écoles primaires", 
+      "Les lycées", 
+      "La voirie communale", 
+      "L'état civil"
+    ],
+    correct: 1,
+    explication: "✅ Bien vu ! Les lycées dépendent des Régions, les collèges des Départements. Les communes gèrent les écoles primaires (maternelles et élémentaires)."
+  },
+  {
+    q: "Quel symbole le maire porte-t-il lors des cérémonies officielles ?",
+    opts: [
+      "Une couronne", 
+      "Une toque", 
+      "Une écharpe tricolore bleu-blanc-rouge", 
+      "Un chapeau haut-de-forme"
+    ],
+    correct: 2,
+    explication: "✅ C'est l'écharpe tricolore ! Elle symbolise sa double fonction : représentant de la commune ET représentant de l'État."
+  },
+  {
+    q: "Paris, Lyon et Marseille ont un statut particulier. Comment sont-elles organisées ?",
+    opts: [
+      "En cantons", 
+      "En arrondissements ou secteurs avec des conseils locaux", 
+      "En quartiers sans élus", 
+      "Comme les autres communes, sans différence"
+    ],
+    correct: 1,
+    explication: "✅ Correct ! Ces trois grandes villes sont divisées en arrondissements (Paris, Lyon) ou secteurs (Marseille). Depuis 2026, les habitants y élisent directement les conseillers municipaux."
+  },
+  {
+    q: "Le maire doit-il organiser les élections présidentielles dans sa commune ?",
+    opts: [
+      "Non, c'est le préfet qui s'en charge", 
+      "Oui, c'est l'une de ses fonctions comme agent de l'État", 
+      "Non, c'est le conseil municipal", 
+      "Oui, mais seulement les élections locales"
+    ],
+    correct: 1,
+    explication: "✅ Exact ! En tant qu'agent de l'État, le maire organise les bureaux de vote pour toutes les élections : présidentielles, législatives, municipales, etc."
+  },
+  {
+    q: "À combien d'années s'élève la prime majoritaire dans les communes de plus de 1000 habitants ?",
+    opts: [
+      "La liste gagnante obtient 50% des sièges directement", 
+      "La liste gagnante obtient 25% des sièges directement", 
+      "Tous les sièges sont répartis à la proportionnelle", 
+      "La liste gagnante prend tous les sièges"
+    ],
+    correct: 0,
+    explication: "✅ Dans les communes de plus de 1 000 habitants, la liste arrivée en tête obtient une \"prime majoritaire\" de 50% des sièges, ce qui lui garantit une majorité au conseil municipal. (À Paris, Lyon, Marseille, cette prime est de 25%.)"
+  },
+  {
+    q: "Le conseil municipal peut-il démettre le maire de ses fonctions ?",
+    opts: [
+      "Non, seul le préfet peut le faire", 
+      "Oui, si le conseil vote une motion de censure et que le maire perd la confiance de la majorité", 
+      "Non, le maire est inamovible pendant 6 ans", 
+      "Oui, à tout moment, par un simple vote"
+    ],
+    correct: 1,
+    explication: "✅ Correct. Le maire est responsable devant le conseil municipal. Il peut perdre sa fonction s'il n'a plus la confiance de la majorité des conseillers."
+  },
+  {
+    q: "Lequel de ces services dépend de la mairie de ta commune ?",
+    opts: [
+      "Le collège", 
+      "L'hôpital public", 
+      "La cantine et les locaux de l'école primaire", 
+      "La gendarmerie nationale"
+    ],
+    correct: 2,
+    explication: "✅ Exactement ! La commune gère les bâtiments, la cantine et le personnel non-enseignant des écoles primaires (maternelles et élémentaires). Le collège dépend du département, l'hôpital de l'État, la gendarmerie de l'État."
+  }
+];
+
+let answers = {};
+let submitted = {};
+
+function buildQuiz() {
+  const container = document.getElementById('quiz');
+  container.innerHTML = '';
+  answers = {};
+  submitted = {};
+
+  questions.forEach((q, qi) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-question';
+    div.innerHTML = `
+      <div class="quiz-q-num">Question ${qi+1} / ${questions.length}</div>
+      <div class="quiz-q-text">${q.q}</div>
+      <div class="quiz-options">
+        ${q.opts.map((opt, oi) => `
+          <button class="quiz-opt" onclick="selectAnswer(${qi}, ${oi})" id="opt-${qi}-${oi}">${opt}</button>
+        `).join('')}
+      </div>
+      <div class="quiz-explication" id="expl-${qi}">${q.explication}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function selectAnswer(qi, oi) {
+  if (submitted[qi]) return;
+  submitted[qi] = true;
+  answers[qi] = oi;
+
+  const correct = questions[qi].correct;
+  const explDiv = document.getElementById(`expl-${qi}`);
+
+  for (let i = 0; i < questions[qi].opts.length; i++) {
+    const btn = document.getElementById(`opt-${qi}-${i}`);
+    btn.classList.add('disabled');
+    if (i === correct) btn.classList.add('correct');
+    else if (i === oi && oi !== correct) btn.classList.add('wrong');
+  }
+
+  explDiv.classList.add('show');
+  explDiv.classList.add(oi === correct ? 'correct' : 'wrong');
+
+  if (!explDiv.classList.contains('correct')) {
+    explDiv.innerHTML = `❌ Ce n'est pas la bonne réponse. La bonne réponse est : <strong>${questions[qi].opts[correct]}</strong>.<br>${questions[qi].explication.replace('✅ ','').split('!')[0]}!`;
+  }
+
+  if (Object.keys(submitted).length === questions.length) {
+    setTimeout(showScore, 800);
+  }
+}
+
+function showScore() {
+  let score = 0;
+  Object.keys(answers).forEach(qi => {
+    if (answers[qi] === questions[qi].correct) score++;
+  });
+  const scoreDiv = document.getElementById('quiz-score');
+  const numDiv = document.getElementById('score-num');
+  const msgDiv = document.getElementById('score-msg');
+
+  numDiv.textContent = `${score} / ${questions.length}`;
+  if (score >= 9) msgDiv.textContent = '🏆 Excellent ! Tu maîtrises parfaitement le sujet !';
+  else if (score >= 7) msgDiv.textContent = '👍 Très bien ! Quelques points à revoir.';
+  else if (score >= 5) msgDiv.textContent = '📚 Bien ! Relis les parties que tu n\'as pas comprises.';
+  else msgDiv.textContent = '💪 Continue tes efforts, relis le cours et réessaie !';
+
+  scoreDiv.classList.add('show');
+  scoreDiv.scrollIntoView({ behavior: 'smooth' });
+}
+
+function restartQuiz() {
+  document.getElementById('quiz-score').classList.remove('show');
+  buildQuiz();
+  document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+}
+
+buildQuiz();
+</script>
+
+</body>
+</html>
